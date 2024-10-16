@@ -1,9 +1,12 @@
 package edu.grinnell.csc207.util;
 
+import java.lang.reflect.Array;
+import java.security.KeyPair;
+
 /**
  * An implementation of two-dimensional matrices.
  *
- * @author Your Name Here
+ * @author Leo Goldman
  * @author Samuel A. Rebelsky
  *
  * @param <T>
@@ -13,6 +16,29 @@ public class MatrixV0<T> implements Matrix<T> {
   // +--------+------------------------------------------------------
   // | Fields |
   // +--------+
+
+  /**
+   * The array - internal.
+   */
+  public AssociativeArray<KVPair<Integer, Integer>, T> arr = 
+      new AssociativeArray<KVPair<Integer, Integer>, T>();
+
+  /**
+   * The width of the array.
+   */
+  private int width;
+  
+  /**
+   * The height of the array.
+   */
+  private int height;
+  
+  /**
+   * The default value.
+   */
+  private T def;
+
+
 
   // +--------------+------------------------------------------------
   // | Constructors |
@@ -33,7 +59,9 @@ public class MatrixV0<T> implements Matrix<T> {
    *   If either the width or height are negative.
    */
   public MatrixV0(int width, int height, T def) {
-    // STUB
+    this.width = width;
+    this.height = height;
+    this.def = def;
   } // MatrixV0(int, int, T)
 
   /**
@@ -70,7 +98,18 @@ public class MatrixV0<T> implements Matrix<T> {
    *   If either the row or column is out of reasonable bounds.
    */
   public T get(int row, int col) {
-    return null;        // STUB
+    if (row < 0 || row > this.width) {
+      throw new IndexOutOfBoundsException(row);
+    } // Row preconditions
+    if (col < 0 || col > this.height) {
+      throw new IndexOutOfBoundsException(col);
+    } // Col preconditions
+    try {
+      T val = arr.get(new KVPair<Integer, Integer>(row, col));
+      return val;
+    } catch (KeyNotFoundException e) {
+      return this.def;
+    } // Try to get the value from the index.
   } // get(int, int)
 
   /**
@@ -87,7 +126,17 @@ public class MatrixV0<T> implements Matrix<T> {
    *   If either the row or column is out of reasonable bounds.
    */
   public void set(int row, int col, T val) {
-    // STUB
+    if (row < 0 || row > this.width) {
+      throw new IndexOutOfBoundsException(row);
+    } // Row preconditions
+    if (col < 0 || col > this.height) {
+      throw new IndexOutOfBoundsException(col);
+    } // Col preconditions
+    try {
+      arr.set(new KVPair<Integer, Integer>(row, col), val);
+    } catch (Exception e) {
+      // Serious issue if this is ever entered.
+    } // Set the value to the index.
   } // set(int, int, T)
 
   /**
@@ -96,7 +145,7 @@ public class MatrixV0<T> implements Matrix<T> {
    * @return the number of rows.
    */
   public int height() {
-    return 5;   // STUB
+    return this.height;
   } // height()
 
   /**
@@ -105,7 +154,7 @@ public class MatrixV0<T> implements Matrix<T> {
    * @return the number of columns.
    */
   public int width() {
-    return 3;   // STUB
+    return this.width;
   } // width()
 
   /**
