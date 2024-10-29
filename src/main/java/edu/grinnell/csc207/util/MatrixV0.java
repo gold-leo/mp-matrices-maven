@@ -20,8 +20,7 @@ public class MatrixV0<T> implements Matrix<T> {
   /**
    * The array - internal.
    */
-  public AssociativeArray<KVPair<Integer, Integer>, T> arr = 
-      new AssociativeArray<KVPair<Integer, Integer>, T>();
+  public AssociativeArray<Integer[], T> arr = new AssociativeArray<Integer[], T>();
 
   /**
    * The width of the array.
@@ -105,7 +104,7 @@ public class MatrixV0<T> implements Matrix<T> {
       throw new IndexOutOfBoundsException(col);
     } // Col preconditions
     try {
-      T val = arr.get(new KVPair<Integer, Integer>(row, col));
+      T val = arr.get(new Integer[]{row, col});
       return val;
     } catch (KeyNotFoundException e) {
       return this.def;
@@ -133,7 +132,7 @@ public class MatrixV0<T> implements Matrix<T> {
       throw new IndexOutOfBoundsException(col);
     } // Col preconditions
     try {
-      arr.set(new KVPair<Integer, Integer>(row, col), val);
+      arr.set(new Integer[]{row, col}, val);
     } catch (Exception e) {
       // Serious issue if this is ever entered.
     } // Set the value to the index.

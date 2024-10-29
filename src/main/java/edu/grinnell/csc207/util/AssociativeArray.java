@@ -2,6 +2,8 @@ package edu.grinnell.csc207.util;
 
 import static java.lang.reflect.Array.newInstance;
 
+import java.util.Arrays;
+
 /**
  * A basic implementation of Associative Arrays with keys of type K
  * and values of type V. Associative Arrays store key/value pairs
@@ -162,7 +164,7 @@ public class AssociativeArray<K, V> {
       return false;
     }
     for (int i = 0; i < this.size(); i++) {
-      if (pairs[i].key.equals(key)) {
+      if (pairs[i].key.equals(key) || Arrays.equals((Integer[]) pairs[i].key, (Integer[]) key)) {
         return true;
       }
     } // iterate through pairs
@@ -226,7 +228,7 @@ public class AssociativeArray<K, V> {
       throw new KeyNotFoundException("AA is empty");
     }
     for (int i = 0; i < this.size(); i++) {
-      if (pairs[i].key.equals(key)) {
+      if (pairs[i].key.equals(key) || Arrays.equals((Integer[]) pairs[i].key, (Integer[]) key)) {
         return i;
       }
     } // iterate through pairs
