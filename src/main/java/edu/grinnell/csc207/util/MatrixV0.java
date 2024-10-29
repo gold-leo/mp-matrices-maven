@@ -97,11 +97,11 @@ public class MatrixV0<T> implements Matrix<T> {
    *   If either the row or column is out of reasonable bounds.
    */
   public T get(int row, int col) {
-    if (row < 0 || row > this.width) {
-      throw new IndexOutOfBoundsException(row);
-    } // Row preconditions
-    if (col < 0 || col > this.height) {
+    if (row < 0 || row >= this.height) {
       throw new IndexOutOfBoundsException(col);
+    } // Row preconditions
+    if (col < 0 || col >= this.width) {
+      throw new IndexOutOfBoundsException(row);
     } // Col preconditions
     try {
       T val = arr.get(new Integer[]{row, col});
@@ -125,11 +125,11 @@ public class MatrixV0<T> implements Matrix<T> {
    *   If either the row or column is out of reasonable bounds.
    */
   public void set(int row, int col, T val) {
-    if (row < 0 || row > this.width) {
-      throw new IndexOutOfBoundsException(row);
-    } // Row preconditions
-    if (col < 0 || col > this.height) {
+    if (row < 0 || row >= this.height) {
       throw new IndexOutOfBoundsException(col);
+    } // Row preconditions
+    if (col < 0 || col >= this.width) {
+      throw new IndexOutOfBoundsException(row);
     } // Col preconditions
     try {
       arr.set(new Integer[]{row, col}, val);
