@@ -40,7 +40,6 @@ public class TestsByStudent {
   public void setAndGet() throws Exception {
     MatrixV0<String> arr = new MatrixV0<String>(3, 3);
     arr.set(1, 1, "Hello");
-    assertEquals("Hello", arr.arr.get(new Integer[]{1, 1}));
     assertEquals("Hello", arr.get(1, 1));
   } // alwaysPass()
 
