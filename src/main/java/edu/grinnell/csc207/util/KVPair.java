@@ -8,7 +8,7 @@ package edu.grinnell.csc207.util;
  *   The type of the keys.
  * @param <V>
  *   The type of the values.
- * 
+ *
  */
 public class KVPair<K, V> {
   // +--------+------------------------------------------------------
@@ -64,14 +64,14 @@ public class KVPair<K, V> {
 
   /**
    * Compare if two similar KVPairs are equal.
-   * 
+   *
    * @param other
    *    the other KVPair.
    * @return true or false.
    */
   public boolean equals(KVPair<K, V> other) {
     return (this.key.equals(other.key) && this.val.equals(other.val));
-  }
+  } // equals
 
   /**
    * Convert the key/value pair to a string (e.g., for printing).

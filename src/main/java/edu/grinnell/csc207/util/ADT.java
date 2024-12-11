@@ -2,19 +2,19 @@ package edu.grinnell.csc207.util;
 
 /**
  * Basic ADT for the MatrixV0 to make AAs faster.
- * 
- * The design decision used is that it is less likely for 
- * an insert to occur than a get(). O(n) sucks, but O(logn) 
- * four times is probably worse most of the time. At least, for 
+ *
+ * The design decision used is that it is less likely for
+ * an insert to occur than a get(). O(n) sucks, but O(logn)
+ * four times is probably worse most of the time. At least, for
  * this use case.
- * 
+ *
  * @author Leo Goldman
  */
 public class ADT {
   /**
    * The array.
    */
-  public int[] arr;
+  private int[] arr;
 
   /**
    * The size of the ADT.
@@ -28,21 +28,21 @@ public class ADT {
 
   /**
    * Construct an ADT.
-   * @param size
+   * @param s
    *    Size of the ADT.
    */
-  public ADT(int size) {
-    this.size = size;
-    this.uid = size;
-    arr = new int[(int) Math.pow(2, size)];
-    for (int i = 0; i < size; i++) {
+  public ADT(int s) {
+    this.size = s;
+    this.uid = s;
+    arr = new int[(int) Math.pow(2, s)];
+    for (int i = 0; i < s; i++) {
       arr[i] = i;
     } // for
   } // Constriuctor
 
   /**
    * Get the size of the ADT.
-   * @return 
+   * @return
    *    The size
    */
   public int size() {
@@ -53,7 +53,7 @@ public class ADT {
    * Get a value from index i.
    * @param i
    *    The index
-   * @return 
+   * @return
    *    The value
    */
   public int get(int i) {
@@ -64,8 +64,6 @@ public class ADT {
    * Insert value v into the ADT.
    * @param i
    *    The index to insert. Starts at 0!
-   * @param v
-   *    The value to be inserted
    * @throws Exception
    */
   public void insert(int i) throws Exception {
@@ -112,14 +110,27 @@ public class ADT {
     this.size--;
   } // remove()
 
+  /**
+   * Clone the ADT.
+   *
+   * @return ADT Clone
+   */
   public ADT clone() {
     ADT clone = new ADT(size);
 
-    // MORE EVIL!!!!
-    clone.arr = this.arr.clone();
-    
+    clone.setup(this.arr.clone());
+
     return clone;
   } // clone()
+
+  /**
+   * Easy setup for cloning.
+   * @param a
+   *    The array.
+   */
+  public void setup(int[] a) {
+    this.arr = a;
+  } // setup
 
   /**
    * Expand the underlying array.

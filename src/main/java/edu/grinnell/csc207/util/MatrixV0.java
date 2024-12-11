@@ -1,8 +1,8 @@
 package edu.grinnell.csc207.util;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.ParameterizedType;
-import java.security.KeyPair;
+// import java.lang.reflect.Array;
+// import java.lang.reflect.ParameterizedType;
+// import java.security.KeyPair;
 
 /**
  * An implementation of two-dimensional matrices.
@@ -21,7 +21,7 @@ public class MatrixV0<T> implements Matrix<T> {
   /**
    * The array - internal.
    */
-  public AssociativeArray<Integer[], T> arr = new AssociativeArray<Integer[], T>();
+  private AssociativeArray<Integer[], T> arr = new AssociativeArray<Integer[], T>();
 
   /**
    * The default value.
@@ -31,12 +31,12 @@ public class MatrixV0<T> implements Matrix<T> {
   /**
    * The width array.
    */
-  public ADT width;
+  private ADT width;
 
   /**
    * The height array.
    */
-  public ADT height;
+  private ADT height;
 
   // +--------------+------------------------------------------------
   // | Constructors |
@@ -482,14 +482,26 @@ public class MatrixV0<T> implements Matrix<T> {
     return code;
   } // hashCode()
 
+  /**
+   * Set up the height.
+   * @param l
+   */
   public void setHeight(ADT l) {
     this.height = l;
   } // setheight
 
+  /**
+   * Set up the width.
+   * @param w
+   */
   public void setWidth(ADT w) {
     this.width = w;
   } // setwidth
 
+  /**
+   * Set up the AA.
+   * @param aa
+   */
   public void setAA(AssociativeArray<Integer[], T> aa) {
     this.arr = aa;
   } // setAA

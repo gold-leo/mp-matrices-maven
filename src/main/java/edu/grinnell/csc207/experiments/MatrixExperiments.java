@@ -68,7 +68,7 @@ public class MatrixExperiments {
     horizA.insertCol(0);
     figure(pen, "add 0", horizA);
     // pen.println(horizA.get(0, 2));
-    
+
 
 
 

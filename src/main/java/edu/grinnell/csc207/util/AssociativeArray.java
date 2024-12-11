@@ -71,7 +71,7 @@ public class AssociativeArray<K, V> {
         copy.set(pairs[i].key, pairs[i].val);
       } catch (NullKeyException e) {
         continue;
-      }
+      } // try
     } // iterate through pairs
 
     return copy;
@@ -146,7 +146,7 @@ public class AssociativeArray<K, V> {
       return pairs[i].val;
     } catch (KeyNotFoundException e) {
       throw e;
-    }
+    } // try
   } // get(K)
 
   /**
@@ -161,11 +161,11 @@ public class AssociativeArray<K, V> {
   public boolean hasKey(K key) {
     if (this.size() == 0) {
       return false;
-    }
+    } // if
     for (int i = 0; i < this.size(); i++) {
       if (pairs[i].key.equals(key) || Arrays.equals((Integer[]) pairs[i].key, (Integer[]) key)) {
         return true;
-      }
+      } // if
     } // iterate through pairs
     return false;
   } // hasKey(K)
@@ -186,7 +186,7 @@ public class AssociativeArray<K, V> {
       this.size--;
     } catch (Exception e) {
       return;
-    }
+    } // try
   } // remove(K)
 
   /**
@@ -225,11 +225,11 @@ public class AssociativeArray<K, V> {
   int find(K key) throws KeyNotFoundException {
     if (this.size() == 0) {
       throw new KeyNotFoundException("AA is empty");
-    }
+    } // if
     for (int i = 0; i < this.size(); i++) {
       if (pairs[i].key.equals(key) || Arrays.equals((Integer[]) pairs[i].key, (Integer[]) key)) {
         return i;
-      }
+      } // if
     } // iterate through pairs
     throw new KeyNotFoundException();
   } // find(K)
