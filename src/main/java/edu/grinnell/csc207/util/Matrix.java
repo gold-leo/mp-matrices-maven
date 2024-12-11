@@ -48,7 +48,7 @@ public interface Matrix<T> extends Cloneable {
     for (int i = 0; i < width; i++) {
       pen.print("+" + "-".repeat(cellWidth));
     } // for
-    pen.println("+");
+    pen.print("+\n");
   } // printRowSeparator(PrintWriter, int, int)
 
   /**
@@ -121,7 +121,7 @@ public interface Matrix<T> extends Cloneable {
       for (int col = 0; col < width; col++) {
         printCell(pen, String.format("%2d", col), cellWidth + 1);
       } // for
-      pen.println();
+      pen.print("\n");
     } // if
 
     for (int row = 0; row < height; row++) {
@@ -136,7 +136,7 @@ public interface Matrix<T> extends Cloneable {
         pen.print("|");
         printCell(pen, toString(matrix.get(row, col)), cellWidth);
       } // for col
-      pen.println("|");
+      pen.print("|\n");
     } // for row
     if (includeLabels) {
       pen.print(" ".repeat(4));
