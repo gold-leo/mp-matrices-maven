@@ -201,7 +201,7 @@ public class MatrixV0<T> implements Matrix<T> {
       height.insert(row);
     } catch (Exception e) {
       throw new IndexOutOfBoundsException();
-    }
+    } // try
 
     // Add to the AA.
     for (int i = 0; i < width(); i++) {
@@ -236,7 +236,7 @@ public class MatrixV0<T> implements Matrix<T> {
     } catch (Exception e) {
       throw new IndexOutOfBoundsException();
     } // try
-    
+
     // Add to the AA.
     for (int i = 0; i < vals.length; i++) {
       set(row, i, vals[i]);
@@ -262,7 +262,7 @@ public class MatrixV0<T> implements Matrix<T> {
       width.insert(col);
     } catch (Exception e) {
       throw new IndexOutOfBoundsException();
-    }
+    } // try
 
     // Add to the AA.
     for (int i = 0; i < height(); i++) {
@@ -297,7 +297,7 @@ public class MatrixV0<T> implements Matrix<T> {
     } catch (Exception e) {
       throw new IndexOutOfBoundsException();
     } // try
-    
+
     // Add to the AA.
     for (int i = 0; i < vals.length; i++) {
       set(i, col, vals[i]);
@@ -373,10 +373,10 @@ public class MatrixV0<T> implements Matrix<T> {
    *   If the rows or columns are inappropriate.
    */
   public void fillRegion(int startRow, int startCol, int endRow, int endCol,
-    T val) {
-      if (startRow < 0 || startRow >= height() || startCol < 0 || startCol >= width() ||
-      endCol < startCol || endCol > width() || endRow < startRow || endRow > height()) {
-        throw new IndexOutOfBoundsException();
+      T val) {
+    if (startRow < 0 || startRow >= height() || startCol < 0 || startCol >= width()
+        || endCol < startCol || endCol > width() || endRow < startRow || endRow > height()) {
+      throw new IndexOutOfBoundsException();
     } // if
 
     for (int i = startRow; i < endRow; i++) {
@@ -385,8 +385,7 @@ public class MatrixV0<T> implements Matrix<T> {
           set(i, n, val);
         } catch (Exception e) {
           throw new IndexOutOfBoundsException(i + " " + n + " | " + endCol);
-        }
-        
+        } // try
       } // for
     } // for
   } // fillRegion(int, int, int, int, T)
@@ -414,9 +413,9 @@ public class MatrixV0<T> implements Matrix<T> {
    */
   public void fillLine(int startRow, int startCol, int deltaRow, int deltaCol,
       int endRow, int endCol, T val) {
-    if (startRow < 0 || startRow >= height() || startCol < 0 || startCol >= width() ||
-      endCol < startCol || endCol > width() || endRow < startRow || endRow > height()) {
-        throw new IndexOutOfBoundsException();
+    if (startRow < 0 || startRow >= height() || startCol < 0 || startCol >= width()
+        || endCol < startCol || endCol > width() || endRow < startRow || endRow > height()) {
+      throw new IndexOutOfBoundsException();
     } // if
 
     for (; startRow < endRow && startCol < endCol;) {
@@ -437,10 +436,10 @@ public class MatrixV0<T> implements Matrix<T> {
     MatrixV0<T> clone = new MatrixV0<T>(width(), height(), def);
 
     // We do some evil
-    clone.arr = arr.clone();
-    clone.height = height.clone();
-    clone.width = width.clone();
-    // This is evil. Don't do it unless for some reason you 
+    clone.setAA(arr.clone());
+    clone.setHeight(height.clone());
+    clone.setWidth(width.clone());
+    // This is evil. Don't do it unless for some reason you
     // decided to use AAs for this MP like an idiot
     // and then chose to overcomplicate everything even further
 
@@ -482,4 +481,16 @@ public class MatrixV0<T> implements Matrix<T> {
     } // for row
     return code;
   } // hashCode()
+
+  public void setHeight(ADT l) {
+    this.height = l;
+  } // setheight
+
+  public void setWidth(ADT w) {
+    this.width = w;
+  } // setwidth
+
+  public void setAA(AssociativeArray<Integer[], T> aa) {
+    this.arr = aa;
+  } // setAA
 } // class MatrixV0

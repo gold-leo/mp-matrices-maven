@@ -7,6 +7,8 @@ package edu.grinnell.csc207.util;
  * an insert to occur than a get(). O(n) sucks, but O(logn) 
  * four times is probably worse most of the time. At least, for 
  * this use case.
+ * 
+ * @author Leo Goldman
  */
 public class ADT {
   /**
