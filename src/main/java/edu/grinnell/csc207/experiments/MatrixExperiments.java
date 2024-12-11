@@ -4,7 +4,10 @@ import edu.grinnell.csc207.util.ArraySizeException;
 import edu.grinnell.csc207.util.Matrix;
 import edu.grinnell.csc207.util.MatrixV0;
 
+import static java.lang.reflect.Array.set;
+
 import java.io.PrintWriter;
+import java.util.HexFormat;
 
 /**
  * Some experiments with matrices.
@@ -48,6 +51,27 @@ public class MatrixExperiments {
    *   The pen used to print out the results.
    */
   static void assignmentSample(PrintWriter pen) {
+    Matrix<String> horizA = new MatrixV0<String>(2, 1);
+    figure(pen, "Original", horizA);
+    horizA.set(0, 0, "A");
+    horizA.set(0, 1, "B");
+    // horizA.set(0, 2, "C");
+    // horizA.set(0, 3, "D");
+    // horizA.set(0, 4, "E");
+    figure(pen, "Original", horizA);
+    // horizA.deleteCol(2);
+    // figure(pen, "2", horizA);
+    // horizA.deleteCol(0);
+    // figure(pen, "0", horizA);
+    // horizA.deleteCol(2);
+    figure(pen, "2", horizA);
+    horizA.insertCol(0);
+    figure(pen, "add 0", horizA);
+    // pen.println(horizA.get(0, 2));
+    
+
+
+
     Matrix<String> sample = new MatrixV0<String>(5, 6, "O");
     for (int row = 0; row < 6; row++) {
       for (int col = 0; col < 5; col++) {
@@ -68,9 +92,9 @@ public class MatrixExperiments {
     } // try/catch
 
     try {
-      sample.insertRow(0, new String[] {"P", "Q", "R", "S", "T", "U", "V"});
+      sample.insertRow(0);
       figure(pen, "insertRow(0, PQRSTUV)", sample);
-    } catch (ArraySizeException e) {
+    } catch (IndexOutOfBoundsException e) {
       pen.println("*** Failed to insert row 0. ***");
     } // try/catch
 
